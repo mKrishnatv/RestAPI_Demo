@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'RestAPI_Demo'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+tasks.withType(Test) {
+    systemProperties = [
+            env               : System.getProperty('env', 'development'),
+            tags              : System.getProperty('tags', 'SMOKE'),
+            threadCount       : System.getProperty('threadCount', '1'),
+            slackNotif        : System.getProperty('slackNotif', ''),
+    ]
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.testng', name: 'testng', version: '6.8.8'
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.6'
+    compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.6'
+
+    compileOnly "org.projectlombok:lombok:1.18.2"
+    testCompileOnly "org.projectlombok:lombok:1.18.2"
+
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    testCompile(group: 'org.uncommons', name: 'reportng', version: '1.1.4') {
+        exclude group: 'org.testng', module: 'testng'
+    }
+    testCompile(group: 'com.google.inject', name: 'guice', version: '3.0')
+}
