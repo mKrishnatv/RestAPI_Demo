@@ -36,3 +36,23 @@ dependencies {
     }
     testCompile(group: 'com.google.inject', name: 'guice', version: '3.0')
 }
+
+task download(type: Exec) {
+    configurations.testCompile.files
+    commandLine 'echo', 'Downloaded all dependencies'
+}
+
+task runTests(type: Test) {
+
+    useTestNG() {
+        parallel = "classes"
+        threadCount = Integer.parseInt(System.getProperty('threadCount', '1'))
+        includeGroups System.getProperty('tags', 'SMOKE')
+        useDefaultListeners = false
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+        listeners << 'org.testng.reporters.XMLReporter'
+        listeners << 'slack.SlackListener'
+        outputDirectory = file("$buildDir/SinglePageReport")
+    }
+}
