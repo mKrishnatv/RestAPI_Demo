@@ -17,11 +17,14 @@ Rest API : http://dummy.restapiexample.com/
 **5.Slack** -> basic slack channel integration is done which triggers about No of Pass/Failed tests
 
 **6.SampleTests** -> Following tests are automated
+
         Get All Employees List : http://dummy.restapiexample.com/api/v1/employees
+        Add Employee : http://dummy.restapiexample.com/api/v1/create
 
 
 
 **Note:**
+
         * For running tests via IntellIJ use "-ea -Denv=prod -Dtags=SMOKE"
         * For running tests via commandline use "./gradlew runTests -Denv=prod -Dtags=SMOKE"
 
