@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.given;
 
 public class GetEmployeesClient {
     public GetEmployeesResponse getEmployeesList(){
-        String url = SampleAPIProperties.getAllEmployees;
+        String url = SampleAPIProperties.getAllEmployeesUrl;
 
         Instant before = Instant.now();
         Response response = given()
