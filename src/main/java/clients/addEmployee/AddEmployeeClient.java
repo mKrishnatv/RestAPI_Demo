@@ -2,6 +2,7 @@ package clients.addEmployee;
 
 import clients.addEmployee.request.AddEmployeeRequest;
 import clients.addEmployee.response.AddEmployeeResponse;
+import entities.ScenarioContext;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Reporter;
@@ -34,6 +35,7 @@ public class AddEmployeeClient {
 
         AddEmployeeResponse addEmployeeResponse = response.as(AddEmployeeResponse.class);
         addEmployeeResponse.setHttpStatusCode(response.getStatusCode());
+        ScenarioContext.getInstance().getUseCase().setId(addEmployeeResponse.getData().getId());
         return addEmployeeResponse;
     }
 }

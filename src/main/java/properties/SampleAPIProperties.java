@@ -6,4 +6,6 @@ public class SampleAPIProperties {
 
     public static final String getAllEmployeesUrl = String.format("%s/api/v1/employees", restHost);
     public static final String addEmployeeUrl = String.format("%s/api/v1/create", restHost);
+    public static final String updateEmployeeUrl = String.format("%s/api/v1/update", restHost);
+    public static final String deleteEmployeeUrl = String.format("%s/api/v1/delete", restHost);
 }
