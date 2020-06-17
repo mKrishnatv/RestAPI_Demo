@@ -9,7 +9,6 @@ public class Employee {
     String name;
     String salary;
     String age;
-    String Id;
 
     public Employee(String name, String salary, String age){
         this.name = name;

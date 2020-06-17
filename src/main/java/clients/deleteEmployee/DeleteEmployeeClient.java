@@ -14,6 +14,7 @@ import static io.restassured.RestAssured.given;
 public class DeleteEmployeeClient {
     public DeleteEmployeeResponse deleteMember() {
 
+        int memberId = ScenarioContext.getInstance().getUseCase().getId();
         String url = String.format("%s/{employeeId}", SampleAPIProperties.deleteEmployeeUrl);
         Reporter.log(String.format("\nDelete Employee URL --- (DELETE) %s", url), true);
 
@@ -21,7 +22,7 @@ public class DeleteEmployeeClient {
 
         Response response = given()
                 .header("Content-Type", "application/json")
-                .pathParam("employeeId", ScenarioContext.getInstance().getUseCase().getId())
+                .pathParam("employeeId", memberId)
                 .delete(url);
 
         Instant after = Instant.now();

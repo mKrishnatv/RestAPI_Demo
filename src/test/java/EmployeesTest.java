@@ -9,14 +9,21 @@ import clients.updateEmployee.UpdateEmployeeRequestBuilder;
 import clients.updateEmployee.request.UpdateEmployeeRequest;
 import clients.updateEmployee.response.UpdateEmployeeResponse;
 import entities.Employee;
+import entities.ScenarioContext;
+import entities.UseCase;
 import org.testng.annotations.Test;
 import utils.Categories;
 
 public class EmployeesTest {
 
+    private UseCase useCase;
+
     @Test(groups = {Categories.SMOKE})
     public void addEmployee(){
+
         Employee employee = new Employee("Employee1","30000", "25");
+        useCase = new UseCase(employee);
+        ScenarioContext.getInstance().setUseCase(useCase);
 
         AddEmployeeRequest addEmployeeRequest;
         addEmployeeRequest = new AddEmployeeRequestBuilder()
@@ -29,15 +36,16 @@ public class EmployeesTest {
                             .assertEmployeeDetails(employee);
     }
 
-    @Test(groups = {Categories.REGRESSION})
+    @Test(groups = {Categories.SMOKE})
     public void getAllEmployeesList(){
         new GetEmployeesClient().getEmployeesList()
                                 .assertBasicInfoNotNull();
     }
 
-    @Test(groups = {Categories.REGRESSION})
-    public void updateEmployee(){
+    @Test(groups = {Categories.SMOKE})
+    public void updateEmployee() throws InterruptedException {
         Employee employee = new Employee("Employee2", "25000", "30");
+        ScenarioContext.getInstance().getUseCase().setEmployee(employee);
 
         UpdateEmployeeRequest updateEmployeeRequest;
         updateEmployeeRequest = new UpdateEmployeeRequestBuilder()
@@ -50,7 +58,7 @@ public class EmployeesTest {
                                 .assertEmployeeDetails(employee);
     }
 
-    @Test(groups = {Categories.REGRESSION})
+    @Test(groups = {Categories.SMOKE})
     public void deleteEmployee(){
         new DeleteEmployeeClient().deleteMember()
                                   .assertSuccess();

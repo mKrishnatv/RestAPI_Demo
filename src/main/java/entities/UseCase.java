@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class UseCase {
     Employee employee;
-    String Id;
+    int Id;
 
     public UseCase(Employee employee){
         this.employee = employee;

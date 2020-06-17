@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Data {
     private String name;
-    private String id;
+    private int id;
     private String salary;
     private String age;
 }
