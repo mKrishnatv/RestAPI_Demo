@@ -12,7 +12,7 @@ import java.time.Instant;
 import static io.restassured.RestAssured.given;
 
 public class DeleteEmployeeClient {
-    public DeleteEmployeeResponse deleteMember() {
+    public DeleteEmployeeResponse deleteEmployee() {
 
         int memberId = ScenarioContext.getInstance().getUseCase().getId();
         String url = String.format("%s/{employeeId}", SampleAPIProperties.deleteEmployeeUrl);

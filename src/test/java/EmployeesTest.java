@@ -60,7 +60,7 @@ public class EmployeesTest {
 
     @Test(groups = {Categories.SMOKE})
     public void deleteEmployee(){
-        new DeleteEmployeeClient().deleteMember()
+        new DeleteEmployeeClient().deleteEmployee()
                                   .assertSuccess();
     }
 }
